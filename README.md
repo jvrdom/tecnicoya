@@ -5,9 +5,9 @@ PHP application using MVC pattern from this website: http://www.phpro.org/tutori
 
 ###Tools:
 
-  ####Bootstrap: http://getbootstrap.com/2.3.2/
+  #####Bootstrap: http://getbootstrap.com/2.3.2/
   
-  ####Jquery: http://jquery.com/
+  #####Jquery: http://jquery.com/
   
-  ####Mysqlidb: https://github.com/ajillion/PHP-MySQLi-Database-Class
+  #####Mysqlidb: https://github.com/ajillion/PHP-MySQLi-Database-Class
 
