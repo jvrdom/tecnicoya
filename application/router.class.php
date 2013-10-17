@@ -17,7 +17,7 @@ class router {
 
  public $controller;
 
- public $action; 
+ public $action;
 
  function __construct($registry) {
         $this->registry = $registry;

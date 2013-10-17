@@ -1,4 +1,4 @@
-    <h1><?php echo $welcome; ?></h1>
+    <!--<h1><?php echo $welcome; ?></h1>-->
       <form  class="form-horizontal pull-right" action="index.php?rt=index/login" enctype="multipart/form-data" method="POST" id="ingresoForm" name="ingresoForm">
           <fieldset>
              <legend>Inicio de Sesión</legend>

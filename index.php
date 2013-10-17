@@ -19,11 +19,9 @@
  /*** load up the template ***/
  $registry->template = new template($registry);
 
- /*** load the controller ***/
-// $registry->router->loader();
+ session_start();
 
 ?>
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -53,10 +51,17 @@
                 <li class="active"><a href="index.php"><i class="icon-home icon-white"></i> Home</a></li>
               </ul>
               <form class="navbar-search pull-right" action="">
-                <button type="button" class="btn btn-link" style="margin-top: 0px;">Iniciar Sesion</button>
-                |
-                <button type="button" class="btn btn-link" style="margin-top: 0px;">
-                  <a href="index.php?rt=usuario/insert">Registrarse</a></button>
+                <?php  if (empty($_SESSION["usuario"])) { ?>
+                          <!--<button type="button" class="btn btn-link" style="margin-top: 0px;">Iniciar Sesion</button>
+                          |-->
+                          <button type="button" class="btn btn-link" style="margin-top: 0px;">
+                            <a href="index.php?rt=usuario/insert">Registrarse</a></button>
+                       <?php } else { ?>
+                                    <button type="button" class="btn btn-link" style="margin-top: 0px;">Mi Perfil</button>
+                                    |
+                                    <button type="button" class="btn btn-link" style="margin-top: 0px;">
+                                      <a href="index.php?rt=index/logout">Salir</a></button>
+                       <?php } ?>
               </form>
             </div><!-- /.nav-collapse -->
           </div><!-- /.container -->

@@ -1,6 +1,6 @@
-              <form  class="form-horizontal" action="index.php?rt=usuario/update" enctype="multipart/form-data" id="perfilForm" name="perfilForm">
+              <form  class="form-horizontal" action="index.php?rt=usuario/get" enctype="multipart/form-data" id="perfilForm" name="perfilForm">
                   <fieldset>
-                     <legend>Formulario HTML con CSS</legend>
+                     <legend>Perfil de Usuario</legend>
                         <div class="control-group">
                           <label class="control-label" for="usuario">Usuario:</label>
                           <div class="controls">
@@ -41,7 +41,8 @@
                             <label class="checkbox inline">
                               <input id="ingresar" type="submit" name="Registrar" class="btn" value="Editar"/>
                             </label>
-                            <button type="button" class="btn btn-link" style="margin-top: 0px;">Darse de Baja</button>
+                            <button type="button" class="btn btn-link" style="margin-top: 0px;">
+                              <a href="index.php?rt=usuario/delete">Darse de Baja</a></button>
                           </div>
                         </div>
 
@@ -60,6 +61,5 @@
       <script type="text/javascript">
 
       </script>
-    </div>
 
 

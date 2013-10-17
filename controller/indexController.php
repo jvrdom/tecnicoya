@@ -18,11 +18,12 @@ public function login() {
                                   ->get('usuarios'))
     {
       //Almacenamos el nombre de usuario en una variable de sesión usuario
-      session_start();
       $_SESSION['usuario'] = $_POST['usuario'];
       //Redireccionamos a la pagina: index.php
+      header("Location: index.php?rt=usuario/insert");
+      //$this->registry->template->sesion = $_SESSION['usuario'];
+      //$this->registry->template->show('ingreso_usuarios');
       //header("Location: ingreso_usuarios.php");
-      $this->registry->template->show('ingreso_usuarios');
 
     } else {
       //Mensajes de error
@@ -42,9 +43,10 @@ public function login() {
  * @return [type] [description]
  */
 public function logout(){
-
+  unset($_SESSION['usuario']);
+  session_destroy();
+  header('location: index.php');
 }
-
 
 }
 

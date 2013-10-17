@@ -45,11 +45,4 @@
  /*** usuario cliente ***/
  $registry->tecnico = '3';
 
-
- /**
-  * Paises
-  */
- /*** id pais Uruguay ***/
- $registry->pais = '1';
-
 ?>
