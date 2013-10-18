@@ -12,7 +12,7 @@
                 <div class="control-group">
                   <label class="control-label" for="password">Password:</label>
                   <div class="controls">
-                    <input id="pass" name="password" type="password" placeholder="password">
+                    <input id="password" name="password" type="password" placeholder="password">
                   </div>
                 </div>
 

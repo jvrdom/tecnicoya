@@ -59,13 +59,15 @@ public function insert(){
     //Obtengo el ultimo id ingresado.
     $id_localidad = $this->registry->db->getInsertId();
 
+    $password = $this->registry->utiles->blowfish_crypt($_POST['password']);
+
     /**
      * Creo el nuevo array con la informacion a ingresar
      * del nuevo usuario y lo ingreso en la Base de Datos.
      */
     $new_user_data = array(
       'email' => $_POST['usuario'],
-      'password' => $_POST['password'],
+      'password' => $password,
       'nombre' => $_POST['nombre'],
       'apellido' => $_POST['apellido'],
       'celular' => $_POST['celular'],

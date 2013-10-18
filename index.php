@@ -19,6 +19,7 @@
  /*** load up the template ***/
  $registry->template = new template($registry);
 
+ /*** Inicia la sesion ***/
  session_start();
 
 ?>

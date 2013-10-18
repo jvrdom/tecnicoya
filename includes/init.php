@@ -12,8 +12,11 @@
  /*** include the template class ***/
  include __SITE_PATH . '/application/' . 'template.class.php';
 
- /*** include the template class ***/
+ /*** include the msqli class ***/
  include __SITE_PATH . '/model/' . 'mysqlidb.class.php';
+
+ /*** include the utiles class ***/
+ include __SITE_PATH . '/model/' . 'utiles.class.php';
 
  /*** auto load model classes ***/
     function __autoload($class_name) {
@@ -32,6 +35,9 @@
 
  /*** create the database registry object ***/
  $registry->db = mysqlidb::getInstance();
+
+ /*** create the utiles registry object ***/
+ $registry->utiles = utiles::getInstance();
 
  /**
   * Tipos de usuario

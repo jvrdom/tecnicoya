@@ -13,10 +13,8 @@ public function login() {
 
   if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
-    if($usuario = $this->registry->db->where('email',$_POST['usuario'])
-                                  ->where('password',$_POST['password'])
-                                  ->get('usuarios'))
-    {
+    $usuario = $this->registry->db->where('email',$_POST['usuario'])->get('usuarios');
+    if(crypt($_POST['password'], $usuario[0]['password']) == $usuario[0]['password'] and $usuario[0]['usuario'] == $_POST['usuario']){
       //Almacenamos el nombre de usuario en una variable de sesión usuario
       $_SESSION['usuario'] = $_POST['usuario'];
       //Redireccionamos a la pagina: index.php
@@ -24,9 +22,9 @@ public function login() {
       //$this->registry->template->sesion = $_SESSION['usuario'];
       //$this->registry->template->show('ingreso_usuarios');
       //header("Location: ingreso_usuarios.php");
-
     } else {
       //Mensajes de error
+      echo "me cago";
     }
 /*
     if($usuario['id_tipo_usuario'] == 1){
