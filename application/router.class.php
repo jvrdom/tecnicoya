@@ -82,7 +82,7 @@ class router {
 		$action = $this->action;
 	}
 	/*** run the action ***/
-	$controller->$action();
+	$controller->$action($this->args);
  }
 
 
@@ -113,6 +113,14 @@ private function getController() {
 		{
 			$this->action = $parts[1];
 		}
+
+		$i=2;
+		while ( isset($parts[$i])) {
+			array_push($this->args, $parts[$i]);
+			$i++;
+		}
+
+		//var_dump($this->args);
 	}
 
 	if (empty($this->controller))

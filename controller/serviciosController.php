@@ -7,5 +7,6 @@
         $this->registry->template->show('blog_index');
     }
 
+
   }
 ?>

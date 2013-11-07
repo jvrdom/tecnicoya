@@ -1,5 +1,8 @@
 <?php
 
+ /*** Inicia la sesion ***/
+ session_start();
+
  /*** error reporting on ***/
  error_reporting(E_ALL);
 
@@ -19,8 +22,6 @@
  /*** load up the template ***/
  $registry->template = new template($registry);
 
- /*** Inicia la sesion ***/
- session_start();
 
 ?>
 <!DOCTYPE html>
@@ -29,15 +30,24 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="includes/public/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="includes/public/css/bootstrap-select.css" rel="stylesheet" media="screen">
+    <link href="includes/public/css/bootstrap-modal.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" type="text/css" href="includes/public/css/flexigrid.css">
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="includes/public/js/bootstrap.js"></script>
+    <script src="includes/public/js/bootstrap-select.js"></script>
+    <script src="includes/public/js/jqBootstrapValidation.js"></script>
+    <script src="includes/public/js/bootstrap-modal.js"></script>
+    <script src="includes/public/js/bootstrap-modalmanager.js"></script>
+
     <style>
       body {
         padding-top: 60px; /* 60px to make the container go all the
                               way to the bottom of the topbar */
       }
 
-      footer {
-        margin-top: 40px;
-        border-top: 1px solid #EEE;
+      #bienvenido{
+        color: white;
       }
 
     </style>
@@ -46,23 +56,20 @@
      <div class="navbar navbar-fixed-top navbar-inverse">
         <div class="navbar-inner">
           <div class="container">
-            <a class="brand">TecnicoYa!</a>
+            <a href="index.php" class="brand">TécnicoYa!</a>
             <div class="nav-collapse">
+               <?php  if (!empty($_SESSION["usuario"])) { ?>
               <ul class="nav">
-                <li class="active"><a href="index.php"><i class="icon-home icon-white"></i> Home</a></li>
+                <li class="active"><a href="index.php?rt=usuario/index/"><i class="icon-home icon-white"></i> Home</a></li>
               </ul>
               <form class="navbar-search pull-right" action="">
-                <?php  if (empty($_SESSION["usuario"])) { ?>
-                          <!--<button type="button" class="btn btn-link" style="margin-top: 0px;">Iniciar Sesion</button>
-                          |-->
-                          <button type="button" class="btn btn-link" style="margin-top: 0px;">
-                            <a href="index.php?rt=usuario/insert">Registrarse</a></button>
-                       <?php } else { ?>
-                                    <button type="button" class="btn btn-link" style="margin-top: 0px;">Mi Perfil</button>
-                                    |
-                                    <button type="button" class="btn btn-link" style="margin-top: 0px;">
-                                      <a href="index.php?rt=index/logout">Salir</a></button>
-                       <?php } ?>
+                    <small id="bienvenido">Bienvenido <?php echo ($_SESSION["usuario"]) ?></small>
+                    <button type="button" class="btn btn-link" style="margin-top: 0px;">
+                      <a href="index.php?rt=usuario/update/<?php echo $_SESSION["id_usuario"] ?>" > <small>Mi Perfil </small></a></button>
+                    |
+                    <button type="button" class="btn btn-link" style="margin-top: 0px;">
+                      <a href="index.php?rt=index/logout"><small>Salir</small></a></button>
+               <?php } ?>
               </form>
             </div><!-- /.nav-collapse -->
           </div><!-- /.container -->
@@ -75,16 +82,21 @@
           $registry->router->loader();
         ?>
       </div>
+    </div>
 
-      <footer class="footer">
-        <p>
-          <small>
-            Hellou
-          </small>
-        </p>
-        <script src="http://code.jquery.com/jquery.js"></script>
-        <script src="includes/public/js/bootstrap.js"></script>
-      </footer>
+      <div id="footer">
+        <footer>
+          <div class ="container">
+            <div class="content">
+              <div class="text-muted credit">
+                  <p>
+                    <small>
+                    </small>
+                  </p>
+              </div>
+          </div>
+        </div>
+        </footer>
     </div>
   </body>
 </html>

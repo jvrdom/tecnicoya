@@ -315,7 +315,8 @@ class mysqlidb
 
         // Did the user call the "where" method?
         if (!empty($this->_where)) {
-
+            $this->_whereTypeList = '';
+            $this->_paramTypeList = '';
             // if update data was passed, filter through and create the SQL query, accordingly.
             if ($hasTableData) {
                 $pos = strpos($this->_query, 'UPDATE');
@@ -345,6 +346,7 @@ class mysqlidb
 
         // Determine if is INSERT query
         if ($hasTableData) {
+            $this->_paramTypeList = '';
             $pos = strpos($this->_query, 'INSERT');
 
             if ($pos !== false) {
@@ -416,6 +418,10 @@ class mysqlidb
         $results = array();
 
         $meta = $stmt->result_metadata();
+
+        if(!$meta && $stmt->sqlstate) {
+            return array();
+        }
 
         $row = array();
         while ($field = $meta->fetch_field()) {
