@@ -27,7 +27,7 @@
   <div id="mapa" name="mapa" style="height:300px;"/>
 </div>
 
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBDun4Glg2ymc4wiMNbzPXsCAlrEYJhwRA&libraries=geometry&sensor=true"></script>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=[APIKEY]&libraries=geometry&sensor=true"></script>
 <script type="text/javascript">
 
         var map;
