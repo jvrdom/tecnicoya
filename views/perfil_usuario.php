@@ -72,7 +72,7 @@
   </div>
 </div>
 
-      <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBDun4Glg2ymc4wiMNbzPXsCAlrEYJhwRA&sensor=true"></script>
+      <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=[APIKEY]&sensor=true"></script>
 
       <script type="text/javascript">
 
