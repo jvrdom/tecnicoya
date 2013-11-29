@@ -88,7 +88,7 @@
           <div id="mapa" name="mapa" style="height:250px; width:200; margin-top: 26%; margin-left: -20%"></div>
         </div>
 
-      <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBDun4Glg2ymc4wiMNbzPXsCAlrEYJhwRA&sensor=true"></script>
+      <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=[APIKEY]&sensor=true"></script>
       <script type="text/javascript">
 
         var map;
