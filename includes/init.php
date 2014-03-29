@@ -18,6 +18,9 @@
  /*** include the utiles class ***/
  include __SITE_PATH . '/model/' . 'utiles.class.php';
 
+/*** include the notificaciones class ***/
+ include __SITE_PATH . '/model/' . 'notificaciones.class.php';
+
  /*** auto load model classes ***/
     function __autoload($class_name) {
     $filename = strtolower($class_name) . '.class.php';
@@ -38,6 +41,9 @@
 
  /*** create the utiles registry object ***/
  $registry->utiles = utiles::getInstance();
+
+/*** create the utiles registry object ***/
+ $registry->notificaciones = enviarNotificaciones::getInstance();
 
  /**
   * Tipos de usuario

@@ -1,0 +1,105 @@
+body {
+  padding-top: 60px; /* 60px to make the container go all the
+                        way to the bottom of the topbar */
+  height: 100%;
+}
+
+#bienvenido{
+  color: white;
+}
+
+.hero-unit {
+    padding: 60px;
+    margin-bottom: 30px;
+    font-size: 18px;
+    font-weight: 200;
+    line-height: 30px;
+    color: inherit;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+}
+
+.btn-group.bootstrap-select.span3 {
+    margin-top: -3%;
+    margin-left: 3%;
+}
+
+#static {
+  width: 67%;
+  margin-left: -32%;
+  top: 10%;
+}
+
+label.checkbox.inline {
+    padding-left: 20px;
+}
+
+.calificacion {
+    margin-top: 4px;
+}
+
+#confirmacion {
+    text-align: right;
+}
+
+#confirmacionFieldset {
+    margin-bottom: -3%;
+}
+
+#modalEliminar{
+    top: 25%;
+}
+
+select[name="servicios_length"] {
+    margin-bottom: 1%;
+}
+
+#tabla {
+    margin-top: 2%;
+}
+
+#eliminar {
+    text-align: right;
+}
+
+#divZona {
+  padding-bottom: 1%;
+}
+
+.btn-group.bootstrap-select.span3.pull-right {
+    margin-top: -1px;
+}
+
+#servicios_info.dataTables_info {
+    margin-top: 17px;
+}
+
+#servicios_paginate {
+    margin-top: -7px;
+}
+
+.dataTables_info {
+    margin-top: 2%;
+}
+
+#servicios_previous {
+    margin-top: 17%;
+}
+
+#servicios_next {
+    margin-top: 17%;
+}
+
+.btn-group.bootstrap-select.span3 {
+    margin-top: 0px;
+}
+
+#info{
+    text-align: center;
+}
+
+#info p {
+    margin-top: 3%;
+}
+

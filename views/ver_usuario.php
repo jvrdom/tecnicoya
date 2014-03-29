@@ -1,11 +1,11 @@
 <div class="span7">
-<form  class="form-horizontal" action="index.php?rt=usuario/update" method="POST" id="perfilForm" name="perfilForm">
+<form  class="form-horizontal"  id="perfilForm" name="perfilForm">
     <fieldset>
        <legend>Perfil de Usuario</legend>
           <div class="control-group">
             <label class="control-label" for="usuario">Usuario:</label>
             <div class="controls">
-              <input  id="usuario" name="usuario" type="email" value="<?php echo ($usuario['0']['email']); ?>">
+              <label class="control-label" name="nombre" style="text-align: left;"> <strong><?php echo ($usuario['0']['email']); ?></strong></label>
               <p class="help-block"></p>
             </div>
           </div>
@@ -13,21 +13,21 @@
           <div class="control-group">
             <label class="control-label" for="nombre">Nombre:</label>
             <div class="controls">
-              <input id="nombre" name="nombre" type="text" value="<?php echo ($usuario['0']['nombre']); ?>">
+              <label class="control-label" name="nombre" style="text-align: left;"> <strong><?php echo ($usuario['0']['nombre']); ?></strong></label>
             </div>
           </div>
 
           <div class="control-group">
             <label class="control-label" for="apellido">Apellido:</label>
             <div class="controls">
-              <input id="apellido" name="apellido" type="text" value="<?php echo ($usuario['0']['apellido']); ?>">
+              <label class="control-label" name="nombre" style="text-align: left;"> <strong><?php echo ($usuario['0']['apellido']); ?></strong></label>
             </div>
           </div>
 
           <div class="control-group">
             <label class="control-label" for="celular">Celular:</label>
             <div class="controls">
-              <input id="celular" name="celular" type="text" value="<?php echo ($usuario['0']['celular']); ?>">
+              <label class="control-label" name="nombre" style="text-align: left;"> <strong><?php echo ($usuario['0']['celular']); ?></strong></label>
             </div>
           </div>
 
@@ -35,20 +35,16 @@
             <label class="control-label" for="address">Direccion:</label>
             <div class="controls">
               <div class="input-append">
-                <input id="address" type="text" name="address" class="span3" value="<?php echo $localidad; ?>">
-                <input id="coord" type="hidden" name="coord" value="">
-                <button id="Geocode" type="button" name="direccion" class="btn btn-success" onclick="codeAddress()">
-                  <i class="icon-map-marker"></i>
-                </button>
+                <label class="control-label" name="nombre" style="text-align: left;"> <strong><?php echo ($localidad); ?></strong></label>
               </div>
             </div>
           </div>
 
-          <?php if ($_SESSION['tipo'] == '3') { ?>
+          <?php if ($usuario['0']['id_tipo_usuario'] == '3') { ?>
           <div class="control-group">
             <label class="control-label" for="especialidades">Especialidades:</label>
             <div class="controls">
-              <input id="especialidades" name="especialidades" type="text" class="tm-input" placeholder="Agregar más categorias...">
+              <input id="especialidades" name="especialidades" type="text" class="tm-input tm-group" placeholder="Agregar más categorias...">
             </div>
           </div>
           <?php  } ?>
@@ -65,16 +61,9 @@
           <div class="control-group">
             <div class="controls">
               <label class="checkbox inline">
-                <input id="ingresar" type="submit" name="Editar" class="btn btn-primary" value="Editar"/>
-                <?php if ($_SESSION['tipo'] == '3') { ?>
                   <button type="button" class="btn" style="margin-top: 0px;" data-toggle="modal" href="#static">
                     <i class="icon-search"></i> Ver Servicios
                   </button>
-                <?php  } else if ($_SESSION['tipo'] == '1') {?>
-                  <button type="button" class="btn" style="margin-top: 0px;" data-toggle="modal" href="#static">
-                    <i class="icon-search"></i> Ver Servicios
-                  </button>
-                <?php } ?>
               </label>
             </div>
           </div>
@@ -153,89 +142,14 @@
 
           marker = new google.maps.Marker({
             position: position,
-            map: map,
-            draggable: true
+            map: map
           });
-
-          markers.push(marker);
 
           map.setCenter(marker.getPosition());
 
-          document.getElementById('coord').value = marker.getPosition();
-
-/*          if(marker.getDraggable() == true) {
-            google.maps.event.addListener(
-                marker,
-                'drag',
-                function() {
-                    document.getElementById('coord').value = marker.getPosition();
-                }
-            );
-          } else {
-            document.getElementById('coord').value = marke.getPosition();
-          }*/
-
-        }
-
-        function setAllMap(map) {
-          for (var i = 0; i < markers.length; i++) {
-            markers[i].setMap(map);
-          }
-        }
-
-        function clearMarkers() {
-          setAllMap(null);
-        }
-
-        function codeAddress(){
-
-          clearMarkers();
-
-          var address = document.getElementById('address').value;
-          var bounds = new google.maps.LatLngBounds();
-          geocoder.geocode( { 'address': address}, function(results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
-              map.setCenter(results[0].geometry.location);
-              var latLng = results[0].geometry.location;
-              var marker = new google.maps.Marker({
-                  map: map,
-                  animation: google.maps.Animation.DROP,
-                  draggable: true,
-                  position: results[0].geometry.location,
-              });
-
-              bounds.extend(latLng);
-              map.fitBounds(bounds);
-              var zoom = map.getZoom();
-              map.setZoom(zoom > 15 ? 15 : zoom);
-
-              google.maps.event.addListener(marker, 'click', function() {
-                infowindow.open(map,marker);
-              });
-
-              if(marker.getDraggable() == true) {
-                google.maps.event.addListener(
-                    marker,
-                    'drag',
-                    function() {
-                        document.getElementById('coord').value = marker.getPosition();
-                    }
-                );
-              }
-              document.getElementById('coord').value = marker.getPosition();
-
-
-            } else {
-              alert('Geocode was not successful for the following reason: ' + status);
-            }
-          });
         }
 
         google.maps.event.addDomListener(window, 'load', initialize);
-
-        var prueba = jQuery(".tm-input").tagsManager({
-          prefilled: <?php echo json_encode($categorias); ?>
-        });
 
         var otable;
 
@@ -247,8 +161,24 @@
             sendRequest : false,
             decimalLength: 1,
             rateMax: 5,
-            isDisabled: true,
+            onClick : function(element,rate){
+              $.ajax({
+                    url: "index.php?rt=usuario/calificar/",
+                    type: "POST",
+                    data: {rate: rate, id: '<?php echo ($usuario['0']['id_usuarios']); ?>' }
+              });
+              jSuccess('Exito : Su calificacion ha sido guardada :)',{
+                HorizontalPosition:'center',
+                VerticalPosition:'top'
+              });
+            }
           });
+
+
+          var prueba = jQuery(".tm-input").tagsManager({
+            prefilled: <?php echo json_encode($categorias); ?>
+          });
+
 
           otable = $('#servicios').dataTable( {
             "aaSorting": [[ 0, "asc" ]],
@@ -262,12 +192,10 @@
               "sInfoEmpty": "0 entradas",
               "sSearch": "Buscar:",
               "sZeroRecords": "No hay registros para esa busqueda",
-          }
-        });
+            }
+          });
 
-
-
-        } );
+         });
 
       </script>
 

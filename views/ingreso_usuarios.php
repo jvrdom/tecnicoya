@@ -1,10 +1,3 @@
-        <style>
-          .btn-group.bootstrap-select.span3 {
-            margin-top: -3%;
-            margin-left: 3%;
-          }
-        </style>
-
         <div class="span7">
             <form  class="form-horizontal" action="index.php?rt=usuario/insert" method="POST" id="ingresoForm" name="ingresoForm">
                 <fieldset>
@@ -88,7 +81,7 @@
           <div id="mapa" name="mapa" style="height:250px; width:200; margin-top: 26%; margin-left: -20%"></div>
         </div>
 
-      <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=[APIKEY]&sensor=true"></script>
+      <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBDun4Glg2ymc4wiMNbzPXsCAlrEYJhwRA&sensor=true"></script>
       <script type="text/javascript">
 
         var map;
@@ -112,12 +105,50 @@
           map = new google.maps.Map(document.getElementById('mapa'),
               mapOptions);
 
-          /*google.maps.event.addListener(map, 'click', function(event) {
-            addMarker(event.latLng);
-          });*/
+          if(navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position){
+              var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+              var markerBrowser = new google.maps.Marker({
+                  map: map,
+                  position: pos
+              });
+
+              var info = new google.maps.InfoWindow({
+                content: 'Tu estas aqui! :D'
+              });
+
+              info.open(map,markerBrowser);
+
+              map.setCenter(pos);
+              document.getElementById('coord').value = pos;
+
+            }, function(){
+              handleNoGeolocation(true);
+            });
+          } else {
+            handleNoGeolocation(false);
+          }
         }
 
-        function addMarker(location) {
+        function handleNoGeolocation(errorFlag){
+          if(errorFlag) {
+            var content = 'Error: The Geolocation service failed.';
+          } else {
+            var content = 'Error: Your Browser doesn\'t support Geolocation.';
+          }
+
+          var options = {
+            map: map,
+            position: new google.maps.LatLng(-34.904375,-56.166414),
+            content: content
+          };
+
+          var infowindowError = new google.maps.InfoWindow(options);
+          map.setCenter(options.position);
+        }
+
+        /*function addMarker(location) {
           if (marker){
             marker.setPosition(location);
           } else {
@@ -128,7 +159,7 @@
           }
           markerNew = marker.getPosition();
           document.getElementById('coord').value = markerNew;
-        }
+        }*/
 
         function codeAddress(){
           var address = document.getElementById('address').value;
